@@ -1,0 +1,33 @@
+graph TD
+    ATM[ATM Machine] --> L2[L2 Switch]
+    L2 --> L3[L3 Switch]
+    L3 --> Core[Core L3 Switch]
+    
+    Core --> ACL{Access Control List}
+    
+    ACL -- Permit VLAN 50 --> SVR[(Transaction Server)]
+    ACL -- Block --> Internal[Other Internal VLANs]
+    ACL -- Block --> Web[Internet]
+
+    style ACL fill:#ff9,stroke:#333,stroke-width:2px
+    style SVR fill:#9f9,stroke:#333,stroke-width:2px
+    style Internal fill:#f99,stroke:#333
+    style Web fill:#f99,stroke:#333
+
+
+graph TD
+    subgraph Internal [Internal Network]
+        Lobby[Lobby PC]
+        VLANs[Internal VLANs]
+    end
+
+    Firewall{Firewall}
+    Internet((Internet))
+
+    %% Path Logic
+    Lobby --- Firewall
+    Firewall --- Internet
+
+    %% Block Rule
+    Firewall -- x BLOCK x --- VLANs
+
