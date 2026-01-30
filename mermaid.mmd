@@ -31,3 +31,30 @@ graph TD
     %% Block Rule
     Firewall -- x BLOCK x --- VLANs
 
+
+
+### Schedule
+
+gantt
+    title Network Implementation Project Schedule
+    dateFormat  YYYY-MM-DD
+    axisFormat  Week %U
+
+    section Week 1: Planning
+    Define Requirements           :a1, 2026-02-02, 2d
+    System Diagram & Flowchart    :a2, after a1, 2d
+    IP & ACL Planning             :a3, after a2, 3d
+
+    section Week 2: Topology
+    Packet Tracer Setup           :b1, 2026-02-09, 3d
+    VLAN & Port Assignment        :b2, after b1, 2d
+    SVI & Gateway Config          :b3, after b2, 2d
+
+    section Week 3: Servers & ACLs
+    Server Config (VLAN 50)       :c1, 2026-02-16, 3d
+    Apply ACL Rules               :c2, after c1, 4d
+
+    section Week 4: Testing
+    Connectivity & Security Tests :d1, 2026-02-23, 4d
+    Final Documentation           :d2, after d1, 3d
+
