@@ -134,3 +134,46 @@ Then from PC1:
 - Ping PC4 IP  
 
 If these work, routing between L3 switches and router is correct.
+
+
+
+
+### Devices and VLANs
+
+- Left side:  
+  - PC1 in VLAN 10, PC2 in VLAN 20.  
+  - These connect to a left L2 switch.  
+  - Left L2 switch uplinks (trunk) to a left L3 switch.
+
+- Right side:  
+  - PC3 in VLAN 30, PC4 in VLAN 40.  
+  - These connect to a right L2 switch.  
+  - Right L2 switch uplinks (trunk) to a right L3 switch.
+
+### L3 switches and router
+
+- Left L3 switch:  
+  - Has SVIs for VLAN 10 and 20 (gateway IPs for PC1 and PC2).  
+  - Uplink to router is a routed port with IP 10.0.0.1/30.  
+  - Default route: `ip route 0.0.0.0 0.0.0.0 10.0.0.2`.
+
+- Right L3 switch:  
+  - Has SVIs for VLAN 30 and 40 (gateway IPs for PC3 and PC4).  
+  - Uplink to router is a routed port with IP 10.0.0.5/30.  
+  - Default route: `ip route 0.0.0.0 0.0.0.0 10.0.0.6`.
+
+- Router:  
+  - Interface g0/0: 10.0.0.2/30 (to left L3).  
+  - Interface g0/1: 10.0.0.6/30 (to right L3).  
+  - Static routes:  
+    - `ip route 192.168.10.0 255.255.255.0 10.0.0.1` (to VLAN 10, left).  
+    - `ip route 192.168.20.0 255.255.255.0 10.0.0.1` (to VLAN 20, left).  
+    - `ip route 192.168.30.0 255.255.255.0 10.0.0.5` (to VLAN 30, right).  
+    - `ip route 192.168.40.0 255.255.255.0 10.0.0.5` (to VLAN 40, right).
+
+### What this achieves
+
+- Each PC talks to its own gateway SVI on its local L3 switch.  
+- Each L3 switch sends “non-local” traffic to the router (default route).  
+- The router knows which L3 switch to use for each VLAN network (static routes).  
+- Result: PC1 (VLAN 10) can ping PC4 (VLAN 40) through L3 switches and the router.
