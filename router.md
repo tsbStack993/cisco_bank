@@ -170,7 +170,7 @@ If these work, routing between L3 switches and router is correct.
     - `ip route 192.168.20.0 255.255.255.0 10.0.0.1` (to VLAN 20, left).  
     - `ip route 192.168.30.0 255.255.255.0 10.0.0.5` (to VLAN 30, right).  
     - `ip route 192.168.40.0 255.255.255.0 10.0.0.5` (to VLAN 40, right).
-
+https://chat.deepseek.com/share/d8ijh4h5mn72pe1j18
 ### What this achieves
 
 - Each PC talks to its own gateway SVI on its local L3 switch.  
