@@ -177,3 +177,6 @@ https://chat.deepseek.com/share/d8ijh4h5mn72pe1j18
 - Each L3 switch sends “non-local” traffic to the router (default route).  
 - The router knows which L3 switch to use for each VLAN network (static routes).  
 - Result: PC1 (VLAN 10) can ping PC4 (VLAN 40) through L3 switches and the router.
+
+
+https://github.com/7elmie/CCNA-3-Lab-S-4-U/blob/main/IP%20Telephony%20completed.pkt
