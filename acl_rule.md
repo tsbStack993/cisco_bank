@@ -89,6 +89,11 @@ Gateway: 203.0.0.1
 !on rotuer
 ip route 0.0.0.0 0.0.0.0 10.0.0.6
 
+access-list outside_access_in extended permit icmp any any
+!
+!
+access-group outside_access_in in interface outside
+
 
 route inside_name 192.168.10.0 255.255.255.0 10.0.0.5
 ip route 0.0.0.0 0.0.0.0 10.0.0.6 in router
